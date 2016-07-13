@@ -172,6 +172,40 @@ namespace RestaurantsList
       return foundCuisine;
     }
 
+    public static Cuisine FindByName(string name)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM cuisine WHERE cuisine_name = @CuisineName;", conn);
+      SqlParameter cuisineIdParameter = new SqlParameter();
+      cuisineIdParameter.ParameterName = "@CuisineName";
+      cuisineIdParameter.Value = name;
+      cmd.Parameters.Add(cuisineIdParameter);
+      rdr = cmd.ExecuteReader();
+
+      int foundCuisineId = 0;
+      string foundCuisineName = null;
+
+      while(rdr.Read())
+      {
+        foundCuisineId = rdr.GetInt32(0);
+        foundCuisineName = rdr.GetString(1);
+      }
+      Cuisine foundCuisine = new Cuisine(foundCuisineName, foundCuisineId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundCuisine;
+    }
+
     public void Update(string newName)
     {
       SqlConnection conn = DB.Connection();

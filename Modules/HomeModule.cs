@@ -63,6 +63,16 @@ namespace RestaurantsList
         model.Add("restaurants", CuisineRestaurants);
         return View["cuisine.cshtml", model];
       };
+
+      Get["/search"]= parameters => {
+        return View["search.cshtml"];
+      };
+
+      Post["/result"]= _ => {
+        //Cuisine newCuisine = new Cuisine(Request.Form["search"]);
+        Cuisine selectedCuisine = Cuisine.FindByName(Request.Form["search"]);
+        return View["result.cshtml",selectedCuisine];
+      };
     }
   }
 }
