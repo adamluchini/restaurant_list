@@ -1,0 +1,20 @@
+
+<h1>All Cuisines</h1>
+@if (@Model.Count == 0)
+{
+  <p>No cuisines yet</p>
+}
+<ul>
+  @foreach (var cuisine in Model)
+  {
+  <li><a href = "/cuisines/@cuisine.GetId()">@cuisine.GetCuisine()</a></li>
+  }
+</ul>
+<br><br>
+<a href = "/cuisines/new">Add new cuisine</a>
+<br><br>
+<p><a href="/restaurants/new">Add a task to cuisine</a></p>
+<br><br>
+<form action="/cuisines/delete" method="post">
+  <button type="submit">Clear all cuisines</button>
+</form>
