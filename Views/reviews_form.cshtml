@@ -1,0 +1,16 @@
+
+<h1>Add new review</h1>
+<form action = "/reviews/new" method = "post">
+  <label for = "review-name">add review</label>
+  <input id = "review-name" name = "review-name" type = "text">
+  <select name = "cuisine-id">
+    @foreach (var cuisine in Model)
+    {
+      <option value = "@cuisine.GetId()">@cuisine.GetName()</option>
+    }
+  </select>
+
+  <button type = "submit">Add new review</button>
+</form>
+<p><a href = "/">Back home</a></p>
+<p><a href = "/reviews">View all reviews</a></p>

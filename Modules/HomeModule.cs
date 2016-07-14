@@ -45,6 +45,17 @@ namespace RestaurantsList
         return View["success.cshtml"];
       };
 
+      Get["/reviews/new"] = _ => {
+        List<Restaurant> AllRestaurants = Restaurant.GetAll();
+        return View["reviews_form.cshtml", AllRestaurants];
+      };
+
+      Post["/reviews/new"] = _ => {
+        Review newReview = new Review(Request.Form["review-name"], Request.Form["cuisine-id"]);
+        newReview.Save();
+        return View["success.cshtml"];
+      };
+
       Post["/restaurants/delete"] = _ => {
         Restaurant.DeleteAll();
         return View["restaurants_cleared.cshtml"];
@@ -64,14 +75,23 @@ namespace RestaurantsList
         return View["cuisine.cshtml", model];
       };
 
+      Get["/restaurants/{id}"] = parameters => {
+        // Dictionary<string, object> model = new Dictionary<string, object>();
+        Restaurant SelectedRestaurant = Restaurant.Find(parameters.id);
+        //Console.WriteLine(SelectedRestaurant.GetRestaurantId() + " ");
+        // var RestaurantReviews = SelectedRestaurant.GetReviews();
+        // model.Add("Restaurant", SelectedRestaurant);
+        // model.Add("reviews", RestaurantReviews);
+        return View["reviews.cshtml", SelectedRestaurant.GetReviews()];
+      };
+
       Get["/search"]= parameters => {
         return View["search.cshtml"];
       };
 
       Post["/result"]= _ => {
-        //Cuisine newCuisine = new Cuisine(Request.Form["search"]);
         Cuisine selectedCuisine = Cuisine.FindByName(Request.Form["search"]);
-        return View["result.cshtml",selectedCuisine];
+        return View["result.cshtml",selectedCuisine.GetRestaurants()];
       };
     }
   }

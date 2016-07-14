@@ -1,0 +1,13 @@
+
+<h2>Here are all the reviews for this restaurant</h2>
+
+
+
+  <ol>
+  @foreach (var review in @Model)
+    {
+    <li>@review.GetDescription()</li>
+    }
+  </ol>
+
+<p><a href = "/">Return home</a></p>

@@ -1,2 +1,8 @@
 <h1>show something</h1>
-<h1>@Model.GetId()</h1>
+
+<ol>
+@foreach (var restaurant in @Model)
+  {
+  <li>@restaurant.GetName()</li>
+  }
+</ol>
