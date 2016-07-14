@@ -1,4 +1,9 @@
-
+<head>
+  <link href="Content/CSS/bootstrap.css" rel="stylesheet">
+  <link href="Content/CSS/styles.css" rel="stylesheet">
+  <meta charset="utf-8">
+</head>
+<body>
 <h1>All Cuisines</h1>
 @if (@Model.Count == 0)
 {
@@ -12,9 +17,9 @@
 </ul>
 <br><br>
 <a href = "/cuisines/new">Add new cuisine</a>
-<br><br>
-<p><a href="/restaurants/new">Add a task to cuisine</a></p>
-<br><br>
+<p><a href="/restaurants/new">Add a restaurant to cuisine type</a></p>
 <form action="/cuisines/delete" method="post">
-  <button type="submit">Clear all cuisines</button>
+  <button type="submit" class="btn btn-danger">Clear all cuisines</button>
 </form>
+<p><a href = "/">Return home</a></p>
+</body>

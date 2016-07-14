@@ -1,0 +1,14 @@
+body{
+  background-color: #847693;
+  text-align: center;
+  color: black;
+  font-size: 14pt;
+}
+ul {
+  display: inline-block;
+}
+
+ol {
+  text-align: center;
+  display: inline-block;;
+}

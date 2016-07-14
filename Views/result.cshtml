@@ -1,4 +1,10 @@
-<h1>show something</h1>
+<head>
+  <link href="/Content/CSS/bootstrap.css" rel="stylesheet">
+  <link href="/Content/CSS/styles.css" rel="stylesheet">
+  <meta charset="utf-8">
+</head>
+<body>
+<h1>Here are the restaurants that match:</h1>
 
 <ol>
 @foreach (var restaurant in @Model)
@@ -6,3 +12,5 @@
   <li>@restaurant.GetName()</li>
   }
 </ol>
+<p><a href="/">Return home</a></p>
+</body>
